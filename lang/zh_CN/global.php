@@ -34,4 +34,8 @@ return [
     'options' => [
         //
     ],
+
+    'site' => '网站',
+    'setting' => '设置',
+
 ];
