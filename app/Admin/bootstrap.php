@@ -24,3 +24,36 @@ use Dcat\Admin\Show;
  * Admin::js('/packages/prettydocs/js/main.js');
  *
  */
+
+
+include_once __DIR__ . '/helpers.php';
+
+$adminConfig = user_admin_config();
+config(['admin' => array_merge(config('admin'), $adminConfig)]);
+config(['app.locale' => config('admin.lang') ?: config('app.locale')]);
+
+
+// ajax请求不执行
+if (! \Dcat\Admin\Support\Helper::isAjaxRequest()) {
+
+
+    \Dcat\Admin\Admin::navbar(function ($navbar){
+
+        $navbar->right(App\Admin\Actions\AdminSetting::make()->render());
+
+        /** @var \Dcat\Admin\Layout\Navbar $navbar */
+//        $navbar->right(view('admin.navbar.navbar', [
+//            'current' => request()->cookie('language', config('app.fallback_locale')),
+//            'list' => [
+//                'zh_CN' => 'zh_CN',
+//                'es' => 'es',
+//            ],
+//        ]));
+//        $navbar->right(
+//            (new \Dcat\Admin\Form\Field\Tags(''))
+//                ->placeholder(trans('translation'))
+//                ->options([1 => 2])
+//        );
+
+    });
+}
