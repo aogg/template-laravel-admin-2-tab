@@ -47,11 +47,11 @@ class AdminSetting extends Form implements LazyRenderable
      */
     public function form()
     {
-        if (\Dcat\Admin\Admin::user()->isAdministrator()) {
-            $this->text('name')->required()->help('网站名称');
-            $this->text('logo')->required()->help('logo设置');
-            $this->text('logo-mini', 'Logo mini')->required();
-        }
+//        if (\Dcat\Admin\Admin::user()->isAdministrator()) {
+//            $this->text('name')->required()->help('网站名称');
+//            $this->text('logo')->required()->help('logo设置');
+//            $this->text('logo-mini', 'Logo mini')->required();
+//        }
 
 
         $this->radio('lang', '语言')->required()->options([
@@ -106,13 +106,13 @@ JS;
     {
         $arr = user_admin_config();
 
-        if (\Dcat\Admin\Admin::user()->isAdministrator()) {
-            $arr = array_merge([
-                'name' => config('admin.name'),
-                'logo' => config('admin.logo'),
-                'logo-mini' => config('admin.logo-mini'),
-            ], $arr);
-        }
+//        if (\Dcat\Admin\Admin::user()->isAdministrator()) {
+//            $arr = array_merge([
+//                'name' => config('admin.name'),
+//                'logo' => config('admin.logo'),
+//                'logo-mini' => config('admin.logo-mini'),
+//            ], $arr);
+//        }
 
         return $arr;
     }
