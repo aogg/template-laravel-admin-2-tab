@@ -33,6 +33,8 @@ config(['admin' => array_merge(config('admin'), $adminConfig)]);
 config(['app.locale' => config('admin.lang') ?: config('app.locale')]);
 
 
+Admin::menu()->add(include __DIR__.'/menu.php', 0);
+
 // ajax请求不执行
 if (! \Dcat\Admin\Support\Helper::isAjaxRequest()) {
 
