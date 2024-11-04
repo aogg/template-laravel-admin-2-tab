@@ -54,7 +54,7 @@ class LogDailyManager extends \Illuminate\Log\LogManager
      *
      * @param string|array|\Throwable $message
      */
-    public static function log_daily($message, $morePath = null, $level = 'info', $driver = 'daily_all'){
+    public static function logDaily($message, $morePath = null, $level = 'info', $driver = 'daily_all'){
         $morePath = $morePath??static::get_debug_backtrace_name();
 
         $unsetArr = [];
@@ -87,19 +87,19 @@ class LogDailyManager extends \Illuminate\Log\LogManager
      * @param $level
      * @return void
      */
-    public static function log_daily_alert($message, $morePath = null, $driver = 'daily_all', $level = 'alter')
+    public static function logDailyAlert($message, $morePath = null, $driver = 'daily_all', $level = 'alter')
     {
-        static::log_daily($message, $morePath, $level, $driver);
+        static::logDaily($message, $morePath, $level, $driver);
     }
 
-    public static function log_daily_error($message, $morePath = null, $driver = 'daily_all', $level = 'error')
+    public static function logDailyError($message, $morePath = null, $driver = 'daily_all', $level = 'error')
     {
-        static::log_daily($message, $morePath, $level, $driver);
+        static::logDaily($message, $morePath, $level, $driver);
     }
 
-    public static function log_daily_exception($message, $exception, $morePath = null, $driver = 'daily_all')
+    public static function logDailyException($message, $exception, $morePath = null, $driver = 'daily_all')
     {
-        static::log_daily_error([
+        static::logDailyError([
             '$message' => $message,
             '$exception' => get_exception_laravel_array($exception),
             '$unsetArr' => $exception,

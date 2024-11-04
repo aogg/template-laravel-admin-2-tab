@@ -15,7 +15,7 @@ class LogDailyManagerTest extends TestCase
 
         }
 
-        \App\Tools\Common\LogDailyManager::log_daily_exception('主动异常', $throwable);
+        \App\Tools\Common\LogDailyManager::logDailyException('主动异常', $throwable);
         self::assertIsObject($throwable);
         self::assertTrue(true);
 
