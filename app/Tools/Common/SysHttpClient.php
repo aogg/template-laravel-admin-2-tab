@@ -16,7 +16,7 @@ abstract class SysHttpClient extends HttpClient
 
 
                 if (!is_pro()) {
-                    \App\Tools\Common\LogDailyManager::log_daily([
+                    \App\Tools\Common\LogDailyManager::logDaily([
                         '$args' => $args,
                         'class' => get_class($this),
                         'response' => $this->response,
@@ -25,7 +25,7 @@ abstract class SysHttpClient extends HttpClient
 
                 return $result;
             }catch (\Throwable $throwable){
-                \App\Tools\Common\LogDailyManager::log_daily_exception([
+                \App\Tools\Common\LogDailyManager::logDailyException([
                     '请求第三方接口异常',
                     '$requestExceptionMsg' => static::$requestExceptionMsg,
                     '$requestExceptionBody' => static::$requestExceptionBody,
