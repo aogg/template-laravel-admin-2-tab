@@ -3,6 +3,18 @@
 
 use Illuminate\Support\Arr;
 
+function admin_grid_auto_refresh(){
+    \Dcat\Admin\Admin::script(
+        <<<JS
+setInterval(function (){
+    console.log('自动刷新')
+    $('button.grid-refresh').click();
+}, 10 * 1000);
+JS
+
+    );
+}
+
 /**
  * 根据路由名称查找url
  *
