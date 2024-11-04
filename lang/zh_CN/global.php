@@ -37,5 +37,8 @@ return [
 
     'site' => '网站',
     'setting' => '设置',
+    'available' => '可用',
+    'unavailable' => '不可用',
+    'temp' => '临时',
 
 ];
