@@ -7,6 +7,7 @@ const IS_CLI = 1;
 include __DIR__ . '/../vendor/autoload.php';
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
+/** @var \Illuminate\Contracts\Console\Kernel $kernel */
 $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
 
 $status = $kernel->handle(
