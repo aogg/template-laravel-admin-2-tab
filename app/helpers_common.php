@@ -2,6 +2,24 @@
 
 // 公共方法
 
+
+{
+    /**
+     * 是否本地环境
+     *
+     * @return bool|string
+     */
+    function is_local()
+    {
+        return app()->environment('local');
+    }
+
+    function is_pro()
+    {
+        return app()->environment('pro');
+    }
+}
+
 /**
  * 多语言key
  * 支持多个
