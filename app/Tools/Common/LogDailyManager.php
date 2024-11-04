@@ -87,19 +87,19 @@ class LogDailyManager extends \Illuminate\Log\LogManager
      * @param $level
      * @return void
      */
-    public static function log_push_daily_alert($message, $morePath = null, $driver = 'daily_all', $level = 'alter')
+    public static function log_daily_alert($message, $morePath = null, $driver = 'daily_all', $level = 'alter')
     {
         static::log_daily($message, $morePath, $level, $driver);
     }
 
-    public static function log_push_daily_error($message, $morePath = null, $driver = 'daily_all', $level = 'error')
+    public static function log_daily_error($message, $morePath = null, $driver = 'daily_all', $level = 'error')
     {
         static::log_daily($message, $morePath, $level, $driver);
     }
 
-    public static function log_push_daily_exception($message, $exception, $morePath = null, $driver = 'daily_all')
+    public static function log_daily_exception($message, $exception, $morePath = null, $driver = 'daily_all')
     {
-        static::log_push_daily_error([
+        static::log_daily_error([
             '$message' => $message,
             '$exception' => get_exception_laravel_array($exception),
             '$unsetArr' => $exception,
