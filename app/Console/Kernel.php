@@ -13,6 +13,16 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+
+
+//        $schedule->command(\App\Console\Commands\UserCrontabCommand::class)
+//            ->everyMinute()
+//            ->runInBackground()
+//            ->withoutOverlapping() // 避免任务重复
+////            ->dailyAt('6:18')
+//            ->onOneServer()
+//        ;
+
     }
 
     /**
