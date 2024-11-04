@@ -57,9 +57,16 @@ class LogDailyManager extends \Illuminate\Log\LogManager
     public static function log_daily($message, $morePath = null, $level = 'info', $driver = 'daily_all'){
         $morePath = $morePath??static::get_debug_backtrace_name();
 
+        $unsetArr = [];
+        if (is_array($message)) {
+            $unsetArr = $message['$unsetArr'];
+            unset($message['$unsetArr']);
+        }
+
         event('LogDailyManager', [
             $message,
-            $morePath, $level, $driver
+            $morePath, $level, $driver,
+            $unsetArr
         ]);
 
         $message = json_encode($message, JSON_UNESCAPED_UNICODE);
@@ -81,6 +88,7 @@ class LogDailyManager extends \Illuminate\Log\LogManager
         static::log_push_daily_error([
             '$message' => $message,
             '$exception' => get_exception_laravel_array($exception),
+            '$unsetArr' => $exception,
         ], $morePath, $driver);
     }
 
