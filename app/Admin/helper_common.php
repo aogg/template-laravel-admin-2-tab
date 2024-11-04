@@ -8,7 +8,7 @@ use Illuminate\Support\Arr;
  *
  * @return void
  */
-function admin_grid_auto_refresh(){
+function admin_grid_auto_refresh($seconds = 10){
     \Dcat\Admin\Admin::script(
         <<<JS
 (function (){
@@ -20,7 +20,7 @@ function admin_grid_auto_refresh(){
 
         console.log('自动刷新')
         $('button.grid-refresh').click();
-    }, 10 * 1000);
+    }, $seconds * 1000);
 
 function checkVisibility() {
     if (document.hidden) {
