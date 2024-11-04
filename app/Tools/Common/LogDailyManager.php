@@ -92,7 +92,7 @@ class LogDailyManager extends \Illuminate\Log\LogManager
      * @param $level
      * @return void
      */
-    public static function logDailyAlert($message, $morePath = null, $driver = 'daily_all', $level = 'alter')
+    public static function logDailyAlert($message, $morePath = null, $driver = 'daily_all', $level = 'alert')
     {
         static::logDaily($message, $morePath, $level, $driver);
     }
