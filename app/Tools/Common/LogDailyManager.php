@@ -78,6 +78,20 @@ class LogDailyManager extends \Illuminate\Log\LogManager
         }
     }
 
+    /**
+     * 告警
+     *
+     * @param $message
+     * @param $morePath
+     * @param $driver
+     * @param $level
+     * @return void
+     */
+    public static function log_push_daily_alert($message, $morePath = null, $driver = 'daily_all', $level = 'alter')
+    {
+        static::log_daily($message, $morePath, $level, $driver);
+    }
+
     public static function log_push_daily_error($message, $morePath = null, $driver = 'daily_all', $level = 'error')
     {
         static::log_daily($message, $morePath, $level, $driver);
