@@ -6,18 +6,13 @@ class BaseCommand extends \Illuminate\Console\Command
 {
     public function infoLog($message)
     {
-        $this->infoCommand($message);
-    }
-
-    public function infoCommand($message)
-    {
         $message = is_string($message)?(datetime() . ' ' . $message):json_encode($message, JSON_UNESCAPED_UNICODE);
         $this->output->info($message);
 
         \App\Tools\Common\LogDailyManager::log_daily($message, class_basename($this), 'info', 'command');
     }
 
-    public function alterCommand($message)
+    public function alterLog($message)
     {
         $message = is_string($message)?(datetime() . ' ' . $message):json_encode($message, JSON_UNESCAPED_UNICODE);
         $this->output->warning($message);
@@ -25,7 +20,7 @@ class BaseCommand extends \Illuminate\Console\Command
         \App\Tools\Common\LogDailyManager::log_daily_alert($message, class_basename($this), 'command');
     }
 
-    public function errorCommand($message)
+    public function errorLog($message)
     {
         $message = is_string($message)?(datetime() . ' ' . $message):json_encode($message, JSON_UNESCAPED_UNICODE);
         $this->output->error($message);
@@ -38,7 +33,7 @@ class BaseCommand extends \Illuminate\Console\Command
      * @param $moreData
      * @return void
      */
-    public function errorThrowableCommand($throwable, $moreData = [])
+    public function errorThrowableLog($throwable, $moreData = [])
     {
 
         $this->output->error(json_encode([$moreData, get_exception_laravel_array($throwable)], JSON_UNESCAPED_UNICODE));
