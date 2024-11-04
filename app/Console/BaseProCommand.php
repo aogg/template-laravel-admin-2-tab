@@ -14,15 +14,15 @@ abstract class BaseProCommand extends BaseCommand
     public function handle()
     {
         try{
-            $this->infoCommand('开始');
+            $this->infoLog('开始');
             $result = $this->handlePro()??0;
 
-            $this->infoCommand('结束');
+            $this->infoLog('结束');
 
             return $result;
         }catch (\Throwable $throwable){
 
-            $this->errorThrowableCommand($throwable);
+            $this->errorThrowableLog($throwable);
 
         }
 
