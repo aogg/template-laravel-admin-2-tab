@@ -38,6 +38,48 @@ if (!function_exists('datetime')) {
     }
 }
 
+
+if (!function_exists('try_func_lock')) {
+
+    /**
+     * 锁，匿名函数执行
+     *
+     * @param string $cacheKey
+     * @param callable $func
+     * @param array $args
+     * @param int $expireTime 最大超时时间
+     * @param bool $delete 运行结束是否删除锁
+     * @return false|mixed|null
+     */
+    function try_func_lock($cacheKey, $func, $args = [], $expireTime = null, $delete = true)
+    {
+        $cacheKey = $cacheKey . ':lock';
+        $result = null;
+
+        /** @var \Redis $redis */
+        $redis = \Illuminate\Support\Facades\Redis::client();
+
+        $bool = false;
+        try {
+            if ($redis->set($cacheKey, time(), isset($expireTime) ? ['nx', 'ex' => $expireTime] : ['nx'])) {
+                $bool = true;
+                $result = call_user_func_array($func, $args) ?? true;
+            }
+        } catch (\Exception|\Throwable $exception) {
+        }
+        if ($bool) {
+            if ($delete || isset($exception)) { // 异常也删除
+                $redis->del($cacheKey);
+            }
+        }
+        if (isset($exception)) {
+            throw $exception;
+
+        }
+        return $result;
+    }
+}
+
 /**
  * 多语言key
  * 支持多个
