@@ -21,6 +21,33 @@ function trans_arr(...$keys){
 }
 
 
+if (!function_exists('get_exception_laravel_array')) {
+
+    /**
+     * 转为可存储的数组
+     *
+     * @param \Throwable $exception
+     * @return array
+     */
+    function get_exception_laravel_array($exception)
+    {
+        $exception_json = [
+            'exception_class_name' => get_class($exception),
+            'getMessage' => $exception->getMessage(),
+            'getFile' => $exception->getFile(),
+            'getCode' => $exception->getCode(),
+            'getTrace' => $exception->getTrace(),
+        ];
+
+
+//        if ($exception instanceof \think\db\exception\PDOException) {
+//            $exception_json['PDOException_data'] = $exception->getData();
+//        }
+
+        return $exception_json;
+    }
+}
+
 if (!function_exists('get_query_from_alias')) {
 
     /**
