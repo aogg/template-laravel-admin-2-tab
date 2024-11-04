@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 class LogDailyManagerTest extends TestCase
 {
 
-    public function testLog_push_daily_exception()
+    public static function testLog_push_daily_exception()
     {
         try{
             [][1];
