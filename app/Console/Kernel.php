@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
 
 
-//        $schedule->command(\App\Console\Commands\Crontabs\UserCrontabCommand::class)
+//        $schedule->command(\App\Console\Commands\Crontab\UserCrontabCommand::class)
 //            ->everyMinute()
 //            ->runInBackground()
 //            ->withoutOverlapping() // 避免任务重复
