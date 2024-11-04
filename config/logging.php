@@ -73,6 +73,14 @@ return [
             'replace_placeholders' => true,
         ],
 
+
+        'daily_all' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/daily.log'),
+//            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 14,
+            'replace_placeholders' => true,
+        ],
         'sql_log' => [
             'driver' => 'daily',
             'path' => storage_path('logs/sql/sql.log'),
