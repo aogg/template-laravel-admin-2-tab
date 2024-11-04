@@ -3,13 +3,41 @@
 
 use Illuminate\Support\Arr;
 
+/**
+ * 自动点击刷新按钮
+ *
+ * @return void
+ */
 function admin_grid_auto_refresh(){
     \Dcat\Admin\Admin::script(
         <<<JS
-setInterval(function (){
-    console.log('自动刷新')
-    $('button.grid-refresh').click();
-}, 10 * 1000);
+(function (){
+    let uncheckBool = false;
+    setTimeout(function (){
+        if (uncheckBool){
+            return;
+        }
+
+        console.log('自动刷新')
+        $('button.grid-refresh').click();
+    }, 10 * 1000);
+
+function checkVisibility() {
+    if (document.hidden) {
+        console.log("当前窗口不可见");
+        uncheckBool = true;
+    } else {
+        console.log("当前窗口可见");
+        uncheckBool = false;
+    }
+}
+
+// 监听可见性变化事件
+document.addEventListener("visibilitychange", checkVisibility);
+
+// 初始检查
+checkVisibility();
+})()
 JS
 
     );
