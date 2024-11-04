@@ -3,6 +3,24 @@
 // 公共方法
 
 
+
+if (!function_exists('datetime')) {
+
+    /**
+     * 将时间戳转换为日期时间
+     * @param int $time 时间戳
+     * @param string $format 日期时间格式
+     * @return string
+     */
+    function datetime($time = 0, $format = 'Y-m-d H:i:s')
+    {
+        $time = is_numeric($time) ? ($time?:time()) : strtotime($time);
+
+        return date($format, $time);
+    }
+}
+
+
 {
     /**
      * 是否本地环境
