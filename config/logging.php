@@ -81,6 +81,13 @@ return [
             'days' => 14,
             'replace_placeholders' => true,
         ],
+        'command' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/command.log'),
+//            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 14,
+            'replace_placeholders' => true,
+        ],
         'sql_log' => [
             'driver' => 'daily',
             'path' => storage_path('logs/sql/sql.log'),
