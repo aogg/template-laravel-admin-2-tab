@@ -63,6 +63,11 @@ class LogDailyManager extends \Illuminate\Log\LogManager
             unset($message['$unsetArr']);
         }
 
+        if (env('log_show_all') || getenv('log_show_all')) { // 显示所有日志
+            echo date('Y-m-d H:i:s') . ' $morePath=' . $morePath
+                . '----' .json_encode($message, JSON_UNESCAPED_UNICODE) . PHP_EOL;
+        }
+
         event('LogDailyManager', [
             $message,
             $morePath, $level, $driver,
