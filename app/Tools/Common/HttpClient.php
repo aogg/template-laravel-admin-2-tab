@@ -126,4 +126,16 @@ abstract class HttpClient
     }
 
 
+    public function getResponseLog()
+    {
+        $response = $this->response?:[];
+        $getHttpExceptionBody = $this::$requestExceptionBody;
+        $getHttpExceptionBody = $getHttpExceptionBody?json_decode($getHttpExceptionBody, true):[];
+        $response['exceptionArr'] = $getHttpExceptionBody;
+        $response['exceptionMsg'] = static::$requestExceptionMsg;
+        $response['request'] = $this->request;
+
+        return $response;
+    }
+
 }

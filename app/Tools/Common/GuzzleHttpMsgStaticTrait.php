@@ -23,18 +23,6 @@ trait GuzzleHttpMsgStaticTrait
         static::$requestExceptionMsg = '';
     }
 
-    public function getHttpExceptionBody()
-    {
-
-        if (static::$requestException instanceof \GuzzleHttp\Exception\ServerException) {
-            return static::$requestException->getResponse()->getBody()->getContents();
-        }else if (static::$requestException instanceof \GuzzleHttp\Exception\ClientException) {
-            return static::$requestException->getResponse()->getBody()->getContents();
-        }
-
-        return null;
-    }
-
     /**
      * @param \Exception $e
      * @return void
@@ -44,6 +32,7 @@ trait GuzzleHttpMsgStaticTrait
         static::$requestException = $e;
         if ($e instanceof \GuzzleHttp\Exception\ServerException) {
             static::$requestExceptionMsg = $e->getResponse()->getBody()->getContents();
+            static::$requestExceptionBody = $e->getResponse()->getBody()->getContents();
         }else if ($e instanceof \GuzzleHttp\Exception\ClientException) {
             static::$requestExceptionMsg = $e->getMessage();
             static::$requestExceptionBody = $e->getResponse()->getBody()->getContents();
@@ -55,4 +44,3 @@ trait GuzzleHttpMsgStaticTrait
     }
 
 }
-
