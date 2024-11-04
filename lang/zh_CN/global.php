@@ -40,5 +40,13 @@ return [
     'available' => '可用',
     'unavailable' => '不可用',
     'temp' => '临时',
+    'image' => '图片',
+    'param' => '参数',
+    'status' => '状态',
+    'other' => '其他',
+    'error' => '错误',
+    'interface' => '接口',
+    'not_exists' => '不存在',
+    'data' => '数据',
 
 ];
