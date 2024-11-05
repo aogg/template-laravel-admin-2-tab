@@ -39,6 +39,8 @@ return [
     'setting' => '设置',
     'available' => '可用',
     'unavailable' => '不可用',
+    'unprocessed' => '未处理',
+    'send' => '发送',
     'temp' => '临时',
     'image' => '图片',
     'param' => '参数',
