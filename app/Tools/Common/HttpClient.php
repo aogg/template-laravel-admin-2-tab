@@ -128,7 +128,7 @@ abstract class HttpClient
 
     public function getResponseLog()
     {
-        $response = $this->response?:[];
+        $response['data'] = $this->response?:[];
         $getHttpExceptionBody = $this::$requestExceptionBody;
         $getHttpExceptionBody = $getHttpExceptionBody?json_decode($getHttpExceptionBody, true):[];
         $response['exceptionArr'] = $getHttpExceptionBody;
