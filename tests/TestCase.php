@@ -9,4 +9,6 @@ abstract class TestCase extends BaseTestCase
     use CreatesApplication;
 
     use \Tests\Base\BaseLaravel9ControllerTestTrait;
+    use \Tests\Base\TestExtendTrait;
+
 }
