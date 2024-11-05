@@ -21,10 +21,15 @@ class JsonFormat
         return static::format($code??static::getCodeError(), $info??static::getCodeErrorInfo(), $data);
     }
 
+    public static function errorMsg($info = null, $code = null, $data = null)
+    {
+        return static::format($code??static::getCodeError(), $info??static::getCodeErrorInfo(), $data);
+    }
+
 
     public static function getCodeError()
     {
-        return 500;
+        return 400;
     }
 
     public static function getCodeErrorInfo()
