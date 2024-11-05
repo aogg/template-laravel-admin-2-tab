@@ -18,7 +18,14 @@ function admin_grid_auto_refresh($seconds = 10){
             return;
         }
 
-        console.log('自动刷新')
+        let localTime = window['admin_grid_auto_refresh_time'];
+
+        if(localTime && (localTime + 10 * 1000) > Date.now()) {
+            return;
+         }
+        window['admin_grid_auto_refresh_time'] = Date.now();
+
+        console.log('自动刷新--' + localTime)
         $('button.grid-refresh').click();
     }, $seconds * 1000);
 
