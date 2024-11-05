@@ -45,6 +45,7 @@ return [
     'status' => '状态',
     'other' => '其他',
     'error' => '错误',
+    'success' => '成功',
     'interface' => '接口',
     'not_exists' => '不存在',
     'data' => '数据',
