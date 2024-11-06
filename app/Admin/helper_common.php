@@ -58,7 +58,7 @@ JS
  * @param $showField
  * @return void
  */
-function admin_handle_append($gridOrShow, $fieldOrigin, $showField){
+function admin_handle_attribute($gridOrShow, $fieldOrigin, $showField){
     if ($gridOrShow instanceof \Dcat\Admin\Grid) {
         $gridOrShow->column($fieldOrigin)->display(function ()use($showField){
             return $this->{$showField};
