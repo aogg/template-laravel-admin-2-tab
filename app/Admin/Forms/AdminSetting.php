@@ -17,12 +17,27 @@ class AdminSetting extends Form implements LazyRenderable
      * @var array
      */
     protected $colors = [
-        'default'    => '深蓝',
-        'blue'       => '蓝',
+//        'default'    => '深蓝',
+//        'blue'       => '蓝',
+////        'blue-light' => '浅蓝',
+////        'blue-dark'  => '深蓝',
+//        'green'      => '绿',
+    ];
+
+    public function __construct($data = [], $key = null)
+    {
+        parent::__construct($data, $key);
+
+        // 主题颜色
+        $this->colors = [
+            'default'    => trans_arr_global('deep_blue'),
+            'blue'       => trans_arr_global('blue'),
 //        'blue-light' => '浅蓝',
 //        'blue-dark'  => '深蓝',
-        'green'      => '绿',
-    ];
+            'green'      => trans_arr_global('green'),
+        ];
+    }
+
 
     /**
      * 处理表单请求.
@@ -39,7 +54,7 @@ class AdminSetting extends Form implements LazyRenderable
             $this->update($k, $v);
         }
 
-        return $this->response()->success('设置成功');
+        return $this->response()->success(trans_arr_global('setting', 'success'));
     }
 
     /**
@@ -54,28 +69,28 @@ class AdminSetting extends Form implements LazyRenderable
 //        }
 
 
-        $this->radio('lang', '语言')->required()->options([
+        $this->radio('lang', trans_arr_global('language'))->required()->options([
             'en' => 'English', 'zh_CN' => '简体中文'
         ]);
-        $this->radio('layout.color', '主题')
+        $this->radio('layout.color', trans_arr_global('topic'))
             ->required()
-            ->help('主题颜色，支持自定义！')
+            ->help(trans('admin-full.admin_setting_topic_help'))
             ->options($this->colors);
 
-        $this->radio('layout.sidebar_style', '菜单样式')
+        $this->radio('layout.sidebar_style', trans_arr_global('menu', 'style'))
             ->options(['light' => 'Light', 'primary' => 'Primary'])
-            ->help('切换菜单栏样式');
+            ->help(trans_arr_global('handover', 'menu_bar', 'style'));
 
-        $this->checkbox('layout.body_class', '菜单布局')
+        $this->checkbox('layout.body_class', trans_arr_global('menu', 'layout'))
             ->options([
-                'horizontal_menu' => '水平 (Horizontal)',
+                'horizontal_menu' => 'Horizontal',
                 'sidebar-separate' => 'sidebar-separate',
             ])
-            ->help('切换菜单布局');
+            ->help(trans_arr_global('handover', 'menu', 'layout'));
 //        $this->switch('https', '启用HTTPS');
 
         if (\Dcat\Admin\Admin::user()->isAdministrator()) {
-            $this->switch('helpers.enable', '开发工具');
+            $this->switch('helpers.enable', trans_arr_global('development', 'tools'));
         }
     }
 
