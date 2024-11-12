@@ -71,6 +71,22 @@ function admin_handle_attribute($gridOrShow, $fieldOrigin, $showField){
 }
 
 /**
+ * 列表--整形在线编辑
+ *
+ * @param \Dcat\Admin\Grid $grid
+ * @param ...$columnArr
+ * @return void
+ */
+function admin_handle_grid_editable_integer($grid, ...$columnArr){
+
+    $grid->column('max_create_num')->editable([
+        'mask' => [
+            'alias' => 'integer',
+        ],
+    ]);
+}
+
+/**
  * 根据路由名称查找url
  *
  * @param $name
