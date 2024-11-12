@@ -11,6 +11,7 @@ use Illuminate\Database\Query\Builder as QueryBuilder;
  *
  * @mixin \Illuminate\Database\Eloquent\Builder
  *
+ * @method static $this|Builder|QueryBuilder whereRelation($relation, $column, $operator = null, $value = null)
  * @method static $this|Builder|QueryBuilder where($column, $operator = null, $value = null, $boolean = 'and')
  * @method static $this|Builder|QueryBuilder whereIn($column, $values, $boolean = 'and', $not = false)
  * @method static bool insert(array $values)   // 支持多组数据 看\Illuminate\Database\Query\Builder::insert
