@@ -109,4 +109,25 @@ JS
         });
     }
 
+    /**
+     * 处理attribute写法复杂问题
+     *
+     * @param $gridOrShow
+     * @param $fieldOrigin
+     * @param $showField
+     * @return void
+     */
+    public static function admin_handle_attribute($gridOrShow, $fieldOrigin, $showField)
+    {
+        if ($gridOrShow instanceof \Dcat\Admin\Grid) {
+            $gridOrShow->column($fieldOrigin)->display(function () use ($showField) {
+                return data_get($this, $showField);
+            });
+        } else if ($gridOrShow instanceof \Dcat\Admin\Show) {
+            $gridOrShow->field($fieldOrigin)->as(function () use ($showField) {
+                return data_get($this, $showField);
+            });
+        }
+    }
+
 }

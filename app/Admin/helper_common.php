@@ -4,26 +4,6 @@
 use Illuminate\Support\Arr;
 
 /**
- * 处理attribute写法复杂问题
- *
- * @param $gridOrShow
- * @param $fieldOrigin
- * @param $showField
- * @return void
- */
-function admin_handle_attribute($gridOrShow, $fieldOrigin, $showField){
-    if ($gridOrShow instanceof \Dcat\Admin\Grid) {
-        $gridOrShow->column($fieldOrigin)->display(function ()use($showField){
-            return $this->{$showField};
-        });
-    }else if ($gridOrShow instanceof \Dcat\Admin\Show){
-        $gridOrShow->field($fieldOrigin)->as(function ()use($showField){
-            return $this->{$showField};
-        });
-    }
-}
-
-/**
  * 根据路由名称查找url
  *
  * @param $name
