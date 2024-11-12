@@ -69,4 +69,44 @@ JS
             ],
         ]);
     }
+
+    /**
+     * 显示json内字段，并且可以在线编辑
+     *
+     * @param $grid
+     * @param $key
+     * @return void
+     */
+    public static function columnDataKeyInput($grid, $key)
+    {
+        $key = strval($key);
+
+        $field = $grid->column(str_replace('.', '__', $key))->display(function ()use(&$field, $key){
+            $field->setOriginal(data_get($this, $key)?:'');
+            return data_get($this, $key)?:'';
+        })->editable();
+    }
+
+    /**
+     * 将columnDataKeyInput里的key转为json数据
+     *
+     * 可以写在
+     * $form->submitted
+     *
+     * @see columnDataKeyInput
+     * @param \Dcat\Admin\Form $form
+     * @return void
+     */
+    public static function handleFormDataKeyJson($form)
+    {
+        $form->submitted(function ($form) {
+            /** @var \Dcat\Admin\Form $form */
+            foreach ($form->input() as $key => $item) {
+                if (strpos($key, '__') > 0) {
+                    $form->input(join('.', explode('__', $key)), $item);
+                }
+            }
+        });
+    }
+
 }
