@@ -115,12 +115,16 @@ JS
      * @param $gridOrShow
      * @param $fieldOrigin
      * @param $showField
-     * @return void
+     * @return \Dcat\Admin\Grid|\Dcat\Admin\Show|null|object
      */
     public static function admin_handle_attribute($gridOrShow, $fieldOrigin, $showField)
     {
         if ($gridOrShow instanceof \Dcat\Admin\Grid) {
-            $gridOrShow->column($fieldOrigin)->display(function () use ($showField) {
+            return ($column = $gridOrShow->column($fieldOrigin))->display(function () use ($showField, &$column) {
+                $column->setAttributes([
+                    'title' => data_get($this, $showField)?:'',
+                ]);
+
                 return data_get($this, $showField);
             });
         } else if ($gridOrShow instanceof \Dcat\Admin\Show) {
