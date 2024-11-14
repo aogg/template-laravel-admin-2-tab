@@ -1,5 +1,7 @@
 <?php
 
+/* @see \Dcat\Admin\Layout\Menu::translate */
+
 return [
     'titles' => [
         'index'         => '主页',
