@@ -26,6 +26,10 @@ if (! function_exists('user_admin_config')) {
             $config['layout'] = config('admin.layout');
             $config['helpers'] = config('admin.helpers');
 
+            if (!\Dcat\Admin\Admin::user()?->isAdministrator()) { // 强制false
+                $config['helpers']['enable'] = false;
+            }
+
             $config['lang'] = config('app.locale');
         }
 
