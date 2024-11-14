@@ -48,7 +48,7 @@ class AdminSetting extends Form implements LazyRenderable
      */
     public function handle(array $input)
     {
-        $input['layout']['horizontal_menu'] = in_array('horizontal_menu', $input['layout']['body_class'], true);
+//        $input['layout']['horizontal_menu'] = in_array('horizontal_menu', $input['layout']['body_class'], true);
 
         foreach (Arr::dot($input) as $k => $v) {
             $this->update($k, $v);
@@ -81,12 +81,12 @@ class AdminSetting extends Form implements LazyRenderable
             ->options(['light' => 'Light', 'primary' => 'Primary'])
             ->help(trans_arr_global('handover', 'menu_bar', 'style'));
 
-        $this->checkbox('layout.body_class', trans_arr_global('menu', 'layout'))
-            ->options([
-                'horizontal_menu' => 'Horizontal',
-                'sidebar-separate' => 'sidebar-separate',
-            ])
-            ->help(trans_arr_global('handover', 'menu', 'layout'));
+//        $this->checkbox('layout.body_class', trans_arr_global('menu', 'layout'))
+//            ->options([
+//                'horizontal_menu' => 'Horizontal',
+//                'sidebar-separate' => 'sidebar-separate',
+//            ])
+//            ->help(trans_arr_global('handover', 'menu', 'layout'));
 //        $this->switch('https', '启用HTTPS');
 
         if (\Dcat\Admin\Admin::user()->isAdministrator()) {
