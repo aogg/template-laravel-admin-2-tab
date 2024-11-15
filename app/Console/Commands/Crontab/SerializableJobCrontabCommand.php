@@ -55,7 +55,10 @@ class SerializableJobCrontabCommand extends BaseProCommand
                     continue;
                 }
 
-                $wrapper->getClosure()();
+                if ($wrapper->getClosure()() === false) {
+                    $data['run_num'] += 1;
+                    Redis::client()->rPush('crontab:SerializableJob', $data);
+                }
 
             }catch (\Throwable $throwable){
                 $this->errorThrowableLog($throwable, ['队列--异常']);
@@ -81,6 +84,7 @@ class SerializableJobCrontabCommand extends BaseProCommand
         return Redis::client()->rPush('crontab:SerializableJob', json_encode([
             'SerializableClosure' => serialize($str),
             'push_time' => datetime(),
+            'run_num' => 1, // 1开始
         ]));
 
     }
