@@ -114,6 +114,7 @@ if (!function_exists('get_exception_laravel_array')) {
             'getMessage' => $exception->getMessage(),
             'getFile' => $exception->getFile(),
             'getCode' => $exception->getCode(),
+            'getLine' => $exception->getLine(),
             'getTrace' => $exception->getTrace(),
         ];
 
