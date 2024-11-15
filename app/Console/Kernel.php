@@ -15,6 +15,13 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
 
 
+        $schedule->command(\App\Console\Commands\Crontab\SerializableJobCrontabCommand::class)
+            ->everyMinute()
+            ->runInBackground()
+            ->withoutOverlapping() // 避免任务重复
+            ->onOneServer()
+        ;
+
 //        $schedule->command(\App\Console\Commands\Crontab\UserCrontabCommand::class)
 //            ->everyMinute()
 //            ->runInBackground()
