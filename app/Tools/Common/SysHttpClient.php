@@ -12,16 +12,25 @@ abstract class SysHttpClient extends HttpClient
         $this->addMiddleware(function ($next, ...$args){
             try{
 
-                $result = $next(...$args);
 
+                $result = null;
+                try{
+                    $result = $next(...$args);
+                }catch (\Throwable $throwable){
 
-                if (!is_pro()) {
-                    \App\Tools\Common\LogDailyManager::logDaily([
-                        '$args' => $args,
-                        'class' => get_class($this),
-                        'response' => $this->response,
-                    ], class_basename($this));
                 }
+
+                \App\Tools\Common\LogDailyManager::logDaily([
+                    '请求参数和返回结果',
+                    '$args' => $args,
+                    'class' => get_class($this),
+                    'response' => $this->response,
+                ], class_basename($this));
+
+                if (!empty($throwable)) {
+                    throw $throwable;
+                }
+
 
                 return $result;
             }catch (\Throwable $throwable){
