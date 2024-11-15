@@ -15,4 +15,17 @@ trait JsonDataModelFieldTrait
         ]);
     }
 
+    /**
+     * 增加json_data数据
+     *
+     * @param $merge
+     * @return $this
+     */
+    public function mergeJsonData($merge = [])
+    {
+        $this->json_data = array_merge($this->json_data?:[], $merge);
+
+        return $this;
+    }
+
 }
