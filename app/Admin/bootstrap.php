@@ -25,6 +25,7 @@ use Dcat\Admin\Show;
  *
  */
 
+define('IS_ADMIN', 1);
 
 include_once __DIR__ . '/helpers.php';
 
