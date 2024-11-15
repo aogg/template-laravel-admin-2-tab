@@ -55,7 +55,7 @@ class SerializableJobCrontabCommand extends BaseProCommand
                     continue;
                 }
 
-                if ($wrapper->getClosure()() === false) {
+                if ($wrapper->getClosure()($data) === false) {
                     $data['run_num'] += 1;
                     Redis::client()->rPush('crontab:SerializableJob', $data);
                 }
