@@ -59,7 +59,7 @@ class LogDailyManager extends \Illuminate\Log\LogManager
 
         $unsetArr = [];
         if (is_array($message)) {
-            $unsetArr = $message['$unsetArr'];
+            $unsetArr = $message['$unsetArr']??[];
             unset($message['$unsetArr']);
         }
 
