@@ -9,7 +9,7 @@ class SerializableJobCrontabCommandTest extends \Tests\TestCase
     public static function testPushJob()
     {
         $func = function (){
-            echo 22;
+            echo time();
 
             return 11;
         };
