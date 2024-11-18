@@ -18,4 +18,23 @@ class SerializableClosureTest extends \Tests\TestCase
 
     }
 
+    public static function test__Serializable_laravel()
+    {
+        $func = function (){
+            echo 1;
+
+            return 2;
+        };
+        $a = new \Laravel\SerializableClosure\SerializableClosure($func);
+        $a = serialize($a);
+        var_dump($a);
+        /** @var \Opis\Closure\SerializableClosure $wrapper */
+        $wrapper = unserialize($a);
+
+        var_dump($wrapper->getClosure()());
+
+        self::assertIsString($a);
+
+    }
+
 }
