@@ -46,9 +46,9 @@ class SerializableJobCrontabCommand extends BaseProCommand
             }
             try{
 
-                /** @var \Opis\Closure\SerializableClosure $wrapper */
+                /** @var \Laravel\SerializableClosure\SerializableClosure $wrapper */
                 $wrapper = unserialize($data['SerializableClosure']);
-                if (empty($wrapper) || !($wrapper instanceof \Opis\Closure\SerializableClosure)) {
+                if (empty($wrapper) || !($wrapper instanceof \Laravel\SerializableClosure\SerializableClosure)) {
                     $this->alterLog([
                         '队列-反序列化--失败',
                     ]);
@@ -80,7 +80,7 @@ class SerializableJobCrontabCommand extends BaseProCommand
 
     public static function pushJob($func)
     {
-        $str = new \Opis\Closure\SerializableClosure($func);
+        $str = new \Laravel\SerializableClosure\SerializableClosure($func);
         return Redis::client()->rPush('crontab:SerializableJob', json_encode([
             'SerializableClosure' => serialize($str),
             'push_time' => datetime(),
