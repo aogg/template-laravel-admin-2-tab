@@ -159,7 +159,7 @@ if (!function_exists('get_query')) {
 if (!function_exists('text_to_image')) {
 
     /**
-     * 文字转图片base64
+     * 文字转图片
      *
      * @param $text
      * @param $width
