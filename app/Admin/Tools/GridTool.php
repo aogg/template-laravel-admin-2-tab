@@ -4,6 +4,19 @@ namespace App\Admin\Tools;
 
 class GridTool
 {
+    /**
+     * 图片
+     *
+     * @see \Dcat\Admin\Grid\Displayers\Image::display
+     * @param $src
+     * @param $width
+     * @param $height
+     * @return string
+     */
+    public static function imageHtml($src, $width = 200, $height = 200, $tag = 'img')
+    {
+        return "<img data-action='preview-img' src='$src' style='max-width:{$width}px;max-height:{$height}px;cursor:pointer' class='img img-thumbnail' />";
+    }
 
     /**
      * 自动点击刷新按钮
